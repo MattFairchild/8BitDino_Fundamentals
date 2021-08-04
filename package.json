@@ -1,0 +1,22 @@
+{
+  "name": "com.eightbitdinosaur.basics",
+  "displayName": "8BitDinosaur Basics",
+  "version": "1.0.0",
+  "type": "template",
+  "unity": "2021.1",
+  "host": "hub",
+  "description": "Basic logic and functionality used by 8BitDinosaur",
+  "dependencies": {
+    "com.unity.inputsystem": "1.0.2",
+    "com.unity.render-pipelines.universal": "11.0.0",
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.xr.management": "4.0.7",
+    "com.unity.xr.oculus": "1.8.1",
+    "com.unity.modules.vr": "1.0.0",
+    "com.unity.modules.xr": "1.0.0"
+  },
+  "repository": {
+    "url": "https://bitbucket.org/MattFairchild/8bitdinosaur_basics/src/master/",
+    "type": "git"
+  }
+}
