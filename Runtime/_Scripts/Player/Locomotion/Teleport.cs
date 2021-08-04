@@ -101,7 +101,6 @@ namespace EightBitDinosaur
         private void show_arc_R(Vector2 n_direction)
         {
             m_thumbstick_R_value = n_direction;
-            Debug.Log(n_direction);
 
             if (m_coroutine == null && !n_direction.is_approx_zero(m_thumbstick_deadzone))
             {
