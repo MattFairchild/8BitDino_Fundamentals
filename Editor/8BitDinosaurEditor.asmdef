@@ -1,0 +1,16 @@
+{
+    "name": "8BitDinosaurEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bdd40a853cbbfb244aa3524a9552ba29"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
