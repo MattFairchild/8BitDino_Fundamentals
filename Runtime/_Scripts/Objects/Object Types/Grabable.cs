@@ -18,7 +18,7 @@ namespace EightBitDinosaur
 	    /// whether or not the object should snap to hand position when being grabbed
 	    /// </summary>
 	    [Tooltip("If true, then the object will snap to the hand transform upon grabbing, otherwise it will stay relative to the grabbed hand")]
-	    public bool m_snap_to_hand = true;
+	    public bool m_snap_to_hand = false;
 
 		[Tooltip("Flag whether this object should use gravity or not. Also sets trigger flag on collider (trigger != use_gravity)")]
 		public bool m_use_gravity = false;
