@@ -32,6 +32,9 @@ namespace EightBitDinosaur
             set;
         }
 
+        // hand that is being used for teleport
+        EHand m_teleporting_hand;
+
         public float m_thumbstick_deadzone = 0.15f;
         public float m_velocity = 15.0f;
         private RaycastHit m_hit;
@@ -51,6 +54,11 @@ namespace EightBitDinosaur
         // the values of the thumbsticks
         private Vector2 m_thumbstick_L_value;
         private Vector2 m_thumbstick_R_value;
+        // direction in 3D in which the player is pointing while teleport (calc from m_thumbstick_XY_value depending on hand used)
+        private Vector3 m_dir;
+
+        // the circle at the target position of successful teleport
+        private GameObject m_teleport_target;
 
         private void OnEnable()
         {
@@ -86,6 +94,10 @@ namespace EightBitDinosaur
             m_lr.startColor   = Color.green;
             m_lr.endColor     = Color.red;
             m_lr.positionCount = 0;
+
+            // load teleport circle for target
+            m_teleport_target = Instantiate(Resources.Load<GameObject>("Teleport/TeleportTarget"));
+            m_teleport_target.SetActive(false);
         }
 
         private void show_arc_L(Vector2 n_direction)
@@ -111,6 +123,7 @@ namespace EightBitDinosaur
         private IEnumerator show_arc_routine(EHand n_initiated_side)
         {
             m_lr.enabled = true;
+            m_teleporting_hand = n_initiated_side;
 
             while (!(n_initiated_side == EHand.RIGHT? m_thumbstick_R_value : m_thumbstick_L_value).is_approx_zero(0.15f))
             {
@@ -118,14 +131,27 @@ namespace EightBitDinosaur
                 m_lr.positionCount = points.Length;
                 m_lr.SetPositions(points);
 
-                m_lr.endColor = (Utils.is_in_layermask(m_hit.transform.gameObject.layer, m_teleportable_layers) ? Color.green : Color.red);
+                if ((Utils.is_in_layermask(m_hit.transform.gameObject.layer, m_teleportable_layers)))
+                {
+                    m_lr.endColor = Color.green;
+                    m_teleport_target.SetActive(true);
 
+                    m_dir = n_initiated_side == EHand.RIGHT ? m_thumbstick_R_value : m_thumbstick_L_value;
+                    m_teleport_target.transform.SetPositionAndRotation(m_hit.point, Quaternion.Euler(0.0f, (m_teleporting_hand == EHand.RIGHT ? RightRayOrigin : LeftRayOrigin).transform.eulerAngles.y+Mathf.Atan2(m_dir.x, m_dir.y) * Mathf.Rad2Deg, 0.0f));
+                }
+                else
+                {
+                    m_lr.endColor = Color.red;
+                    m_teleport_target.SetActive(false);
+                }
+                
                 yield return new WaitForFixedUpdate();
             }
 
             // call the teleport ended event IFF hitting a teleport surface, but always stop showing the teleport arc
             if (m_hit.transform.gameObject.layer == LayerMask.NameToLayer("Teleport"))
             {
+                m_teleport_target.SetActive(false);
                 GameEvents.execute_teleport_ended(m_hit.point);
             }
 
@@ -137,7 +163,8 @@ namespace EightBitDinosaur
         private void teleport(Vector3 n_position)
         {
             Vector3 cam_projection = new Vector3(GameStatics.Instance.PlayerCamera.transform.localPosition.x, 0.0f, GameStatics.Instance.PlayerCamera.transform.localPosition.z);
-            this.transform.root.SetPositionAndRotation((n_position - cam_projection), this.transform.root.rotation);
+            Quaternion proj_hand_rot = Quaternion.Euler(0.0f, (m_teleporting_hand == EHand.RIGHT? RightRayOrigin : LeftRayOrigin).transform.rotation.y, 0.0f);
+            this.transform.root.SetPositionAndRotation((n_position - cam_projection), Quaternion.Euler(0.0f, (m_teleporting_hand == EHand.RIGHT ? RightRayOrigin : LeftRayOrigin).transform.eulerAngles.y + Mathf.Atan2(m_dir.x, m_dir.y) * Mathf.Rad2Deg, 0.0f));
         }
     }
 }
