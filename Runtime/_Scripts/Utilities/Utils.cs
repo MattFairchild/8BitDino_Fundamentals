@@ -10,6 +10,12 @@ namespace EightBitDinosaur
 {
 	public static class Utils
 	{
+        private static System.Random m_rnd = new System.Random();
+        public static long get_random_long(long n_min, long n_max)
+        {
+            return m_rnd.NextLong(n_min, n_max);
+        }
+
         /// <summary>
         /// check whether a given layer is part of a given layermask
         /// </summary>
