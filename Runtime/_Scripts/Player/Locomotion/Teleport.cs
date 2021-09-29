@@ -124,13 +124,13 @@ namespace EightBitDinosaur
             m_lr.enabled = true;
             m_teleporting_hand = n_initiated_side;
 
-            while (!(n_initiated_side == EHand.RIGHT? m_thumbstick_R_value : m_thumbstick_L_value).is_approx_zero(0.15f))
+            while (!(n_initiated_side == EHand.RIGHT ? m_thumbstick_R_value : m_thumbstick_L_value).is_approx_zero(m_thumbstick_deadzone))
             {
                 Vector3[] points = Utils.calculat_trajectory((n_initiated_side == EHand.RIGHT ? RightRayOrigin : LeftRayOrigin), m_velocity, out m_hit);
                 m_lr.positionCount = points.Length;
                 m_lr.SetPositions(points);
 
-                if ((Utils.is_in_layermask(m_hit.transform.gameObject.layer, m_teleportable_layers)))
+                if (m_hit.transform != null && (Utils.is_in_layermask(m_hit.transform.gameObject.layer, m_teleportable_layers)))
                 {
                     m_lr.endColor = Color.green;
                     m_teleport_target.SetActive(true);
@@ -147,10 +147,12 @@ namespace EightBitDinosaur
                 yield return new WaitForFixedUpdate();
             }
 
+            // after releasing teleport, we always stop showing ray, regardless of what we have last hit
+            m_teleport_target.SetActive(false);
+
             // call the teleport ended event IFF hitting a teleport surface, but always stop showing the teleport arc
-            if (m_hit.transform.gameObject.layer == LayerMask.NameToLayer("Teleport"))
+            if (m_hit.transform != null && m_hit.transform.gameObject.layer == LayerMask.NameToLayer("Teleport"))
             {
-                m_teleport_target.SetActive(false);
                 GameEvents.execute_teleport_ended(m_hit.point);
             }
 
