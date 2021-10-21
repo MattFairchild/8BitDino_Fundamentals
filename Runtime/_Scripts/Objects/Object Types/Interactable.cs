@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace EightBitDinosaur
 {
+	[RequireComponent(typeof(Collider))]
 	public class Interactable : MonoBehaviour
 	{
 	    #region VARIABLES
@@ -21,6 +22,7 @@ namespace EightBitDinosaur
 	    public virtual void Awake()
 	    {
 	        this.gameObject.layer = LayerMask.NameToLayer("Interactable");
+			this.GetComponent<Collider>().isTrigger = true;
 	    }
 	
 	    #endregion
