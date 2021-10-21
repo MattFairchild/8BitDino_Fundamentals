@@ -65,6 +65,7 @@ namespace EightBitDinosaur
         {
             LayerVerification.add_layer("Interactable");
             LayerVerification.add_layer("Teleport");
+            LayerVerification.add_layer("Dino_Player");
         }
 
         /// <summary>

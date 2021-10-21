@@ -24,8 +24,9 @@ namespace EightBitDinosaur
 	    void Awake()
 	    {
 	        this.gameObject.tag = "Player";
-	
-	        if (m_cam.GetComponent<AudioListener>() == null)
+			this.transform.set_layers_recursive(LayerMask.NameToLayer("Dino_Player"));
+
+			if (m_cam.GetComponent<AudioListener>() == null)
 	        {
 	            m_cam.AddComponent<AudioListener>();
 	        }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3182792274994664243}
   - component: {fileID: 8586592860165983584}
   - component: {fileID: 2100703041597786453}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4842571818086626475}
   - component: {fileID: 4040902305967091275}
   - component: {fileID: 3947306978913810199}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8580149059678958336}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HandL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8580149059754546969}
   - component: {fileID: 8359987091432347661}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tracked Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 8580149060006872620}
   - component: {fileID: 1502514018390497495}
   - component: {fileID: 1295876365}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8580149060265023730}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HandR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 8580149060417867662}
   - component: {fileID: 8580149060417867661}
   - component: {fileID: 6684656471170180192}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

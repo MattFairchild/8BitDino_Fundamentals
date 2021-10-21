@@ -120,4 +120,21 @@ namespace EightBitDinosaur
             return true;
         }
     }
+
+    public static class TransformExtensions
+    {
+        /// <summary>
+        /// recursively set the layer for all children under the given transform
+        /// </summary>
+        /// <param name="n_transform">the highest hierarchical transform under which the layers should change</param>
+        /// <param name="n_layer">the layer number to be set on all objects</param>
+        public static void set_layers_recursive(this Transform n_transform, int n_layer)
+        {
+            foreach (Transform t in n_transform)
+            {
+                n_transform.gameObject.layer = n_layer;
+                t.set_layers_recursive(n_layer);
+            }
+        }    
+    }
 }
