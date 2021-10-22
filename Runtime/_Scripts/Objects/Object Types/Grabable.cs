@@ -97,6 +97,8 @@ namespace EightBitDinosaur
 	    {
 	        m_grabbing_controller = n_hand;
 	        m_grabbed = true;
+
+			m_rb.useGravity = false;
 	
 	        if (m_snap_to_hand)
 	        {
@@ -133,6 +135,7 @@ namespace EightBitDinosaur
 	        }
 	
 	        m_grabbed = false;
+			m_rb.useGravity = m_use_gravity;
 	        
 	        bool started_connected = (this.transform.parent != null);
 	
