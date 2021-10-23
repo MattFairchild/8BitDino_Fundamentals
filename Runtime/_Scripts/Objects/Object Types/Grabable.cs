@@ -23,8 +23,12 @@ namespace EightBitDinosaur
 		[Tooltip("Flag whether this object should use gravity or not. Also sets trigger flag on collider (trigger != use_gravity)")]
 		public bool m_use_gravity = false;
 
-		protected Transform m_initial_parent;
+        [Tooltip("whether to turn off collision while grabbing the object")]
+        public bool m_turn_off_collision_on_grab = false;
+
+        protected Transform m_initial_parent;
 	    protected Rigidbody m_rb;
+		protected Collider m_collider;
 	    protected MotionController m_grabbing_controller;
 	    protected bool m_grabbed = false;
 	
@@ -45,8 +49,8 @@ namespace EightBitDinosaur
 	        m_rb = this.gameObject.GetComponent<Rigidbody>();
 			m_rb.useGravity = m_use_gravity;
 
-			Collider c = GetComponent<Collider>();
-			c.isTrigger = !m_use_gravity;
+			m_collider = GetComponent<Collider>();
+			m_collider.isTrigger = !m_use_gravity;
 
 			m_initial_parent = this.transform.parent;
 	    }
@@ -102,7 +106,12 @@ namespace EightBitDinosaur
 	        m_grabbed = true;
 
 			m_rb.useGravity = false;
-	
+
+			if (m_turn_off_collision_on_grab)
+			{
+				m_collider.isTrigger = true;
+			}
+
 	        if (m_snap_to_hand)
 	        {
 	            this.transform.position = n_hand.transform.position;
@@ -139,8 +148,13 @@ namespace EightBitDinosaur
 	
 	        m_grabbed = false;
 			m_rb.useGravity = m_use_gravity;
-	        
-	        bool started_connected = (this.transform.parent != null);
+
+            if (m_turn_off_collision_on_grab)
+            {
+                m_collider.isTrigger = !m_use_gravity;
+			}
+
+			bool started_connected = (this.transform.parent != null);
 	
 	        // releasing a grabable is equal to releasing grip button during collision
 	        GameEvents.execute_interactable_grip_released(this);
