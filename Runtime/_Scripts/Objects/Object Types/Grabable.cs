@@ -23,6 +23,7 @@ namespace EightBitDinosaur
 		[Tooltip("Flag whether this object should use gravity or not. Also sets trigger flag on collider (trigger != use_gravity)")]
 		public bool m_use_gravity = false;
 
+		protected Transform m_initial_parent;
 	    protected Rigidbody m_rb;
 	    protected MotionController m_grabbing_controller;
 	    protected bool m_grabbed = false;
@@ -46,6 +47,8 @@ namespace EightBitDinosaur
 
 			Collider c = GetComponent<Collider>();
 			c.isTrigger = !m_use_gravity;
+
+			m_initial_parent = this.transform.parent;
 	    }
 	
 	    #endregion
@@ -143,7 +146,7 @@ namespace EightBitDinosaur
 	        GameEvents.execute_interactable_grip_released(this);
 	
 	        // end the grab
-	        this.transform.SetParent(null);
+	        this.transform.SetParent(m_initial_parent);
 	        
 	        if (m_grabbing_controller != null)
 	        {
