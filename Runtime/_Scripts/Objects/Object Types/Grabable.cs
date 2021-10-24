@@ -49,7 +49,6 @@ namespace EightBitDinosaur
 	        m_rb = this.gameObject.GetComponent<Rigidbody>();
 			m_rb.useGravity = m_use_gravity;
 
-			m_collider = GetComponent<Collider>();
 			m_collider.isTrigger = !m_use_gravity;
 
 			m_initial_parent = this.transform.parent;

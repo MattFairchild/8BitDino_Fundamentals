@@ -25,7 +25,8 @@ namespace EightBitDinosaur
 		public virtual void Awake()
 	    {
 	        this.gameObject.layer = LayerMask.NameToLayer("Interactable");
-			this.GetComponent<Collider>().isTrigger = true;
+			m_collider = GetComponent<Collider>();
+			m_collider.isTrigger = true;
 	    }
 	
 	    #endregion
