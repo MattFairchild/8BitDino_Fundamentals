@@ -14,12 +14,15 @@ namespace EightBitDinosaur
 	[RequireComponent(typeof(Collider))]
 	public class Interactable : MonoBehaviour
 	{
-	    #region VARIABLES
-	    #endregion
-	
-	    #region UNITY LIFECYCLE
-	
-	    public virtual void Awake()
+		#region VARIABLES
+
+		protected Collider m_collider;
+
+		#endregion
+
+		#region UNITY LIFECYCLE
+
+		public virtual void Awake()
 	    {
 	        this.gameObject.layer = LayerMask.NameToLayer("Interactable");
 			this.GetComponent<Collider>().isTrigger = true;

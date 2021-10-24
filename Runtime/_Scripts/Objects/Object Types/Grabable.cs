@@ -28,7 +28,7 @@ namespace EightBitDinosaur
 
         protected Transform m_initial_parent;
 	    protected Rigidbody m_rb;
-		protected Collider m_collider;
+		
 	    protected MotionController m_grabbing_controller;
 	    protected bool m_grabbed = false;
 	
