@@ -165,7 +165,7 @@ namespace EightBitDinosaur
             // add tags
             foreach (string tag in requirements.m_required_tags)
             {
-                LayerVerification.add_layer(tag);
+                TagVerification.add_tag(tag);
             }
 
             // add scripts to singleton gameobject
