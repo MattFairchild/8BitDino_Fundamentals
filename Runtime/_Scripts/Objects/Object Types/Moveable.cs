@@ -61,7 +61,6 @@ namespace EightBitDinosaur
 
         private IEnumerator simple_routine()
         {
-            Debug.Log("Starting simple moveable routine");
             while (true)
             {
                 float y_diff = m_first_grab.transform.position.y - m_first_position.y;
