@@ -11,6 +11,10 @@ namespace EightBitDinosaur
 	{
 	    [SerializeField]
 	    private GameObject m_tracked_objects;
+		public GameObject Tracked_Objects
+		{
+			get { return m_tracked_objects; }
+		}
 	
 	    [SerializeField]
 	    private GameObject m_cam;
@@ -20,6 +24,10 @@ namespace EightBitDinosaur
 
 		// VR tracked camera
 		private VRCamera m_VR_camera;
+		public VRCamera VR_Camera
+		{
+			get { return m_VR_camera; }
+		}
 	
 	    void Awake()
 	    {
@@ -39,8 +47,8 @@ namespace EightBitDinosaur
 
         private void Start()
         {
-            GameStatics.Instance.Player = this.gameObject;
             GameStatics.Instance.PlayerCamera = m_cam;
+			GameStatics.Instance.PlayerScript = this;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace EightBitDinosaur
 	    /// <returns>player ship object or null</returns>
 	    protected override GameObject get_target()
 	    {
-	        return GameStatics.Instance.Player;
+	        return GameStatics.Instance.PlayerScript.gameObject;
 	    }
 	
 	    #endregion

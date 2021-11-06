@@ -7,64 +7,68 @@
 
 using UnityEngine;
 
-public class GameStatics : MonoBehaviour
+namespace EightBitDinosaur
 {
-    #region VARIABLES
-
-    #region singleton
-    private static GameStatics m_instance;
-    /// <summary>
-    /// singleton instance of the combat manager
-    /// </summary>
-    public static GameStatics Instance
+    public class GameStatics : MonoBehaviour
     {
-        get { return m_instance; }
-    }
-    #endregion
+        #region VARIABLES
 
-    /// <summary>
-    /// flag that indicates if the actual game loop is running or not (not = in construction / menu etc.)
-    /// </summary>
-    public bool GameRunning
-    {
-        get;
-        set;
-    }
-
-    /// <summary>
-    /// the camera of the player
-    /// </summary>
-    public GameObject PlayerCamera
-    {
-        get;
-        set;
-    }
-
-    /// <summary>
-    /// the root player object
-    /// </summary>
-    public GameObject Player
-    {
-        get;
-        set;
-    }
-
-    #endregion
-
-    #region UNITY LIFECYCLE
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        if (m_instance != null)
+        #region singleton
+        private static GameStatics m_instance;
+        /// <summary>
+        /// singleton instance of the combat manager
+        /// </summary>
+        public static GameStatics Instance
         {
-            Destroy(this.gameObject);
+            get { return m_instance; }
         }
-        else
+        #endregion
+
+        /// <summary>
+        /// flag that indicates if the actual game loop is running or not (not = in construction / menu etc.)
+        /// </summary>
+        public bool GameRunning
         {
-            m_instance = this;
+            get;
+            set;
         }
+
+        /// <summary>
+        /// the camera of the player
+        /// </summary>
+        public GameObject PlayerCamera
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// the local player script
+        /// </summary>
+        public Player PlayerScript
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
+        #region UNITY LIFECYCLE
+
+        // Start is called before the first frame update
+        void Awake()
+        {
+            if (m_instance != null)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                m_instance = this;
+            }
+        }
+
+        #endregion
     }
 
-    #endregion
 }
