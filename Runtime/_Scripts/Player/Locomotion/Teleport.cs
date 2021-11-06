@@ -163,9 +163,16 @@ namespace EightBitDinosaur
 
         private void teleport(Vector3 n_position)
         {
-            Vector3 cam_projection = new Vector3(GameStatics.Instance.PlayerCamera.transform.localPosition.x, 0.0f, GameStatics.Instance.PlayerCamera.transform.localPosition.z);
-            Quaternion proj_hand_rot = Quaternion.Euler(0.0f, (m_teleporting_hand == EHand.RIGHT? RightRayOrigin : LeftRayOrigin).transform.rotation.y, 0.0f);
-            this.transform.root.SetPositionAndRotation((n_position - cam_projection), Quaternion.Euler(0.0f, (m_teleporting_hand == EHand.RIGHT ? RightRayOrigin : LeftRayOrigin).transform.eulerAngles.y + Mathf.Atan2(m_dir.x, m_dir.y) * Mathf.Rad2Deg, 0.0f));
+            Player player = GameStatics.Instance.PlayerScript;
+
+            // y-rotation-value of hand and teleport rotation/direction combined
+            float target_looking_dir = (m_teleporting_hand == EHand.RIGHT ? RightRayOrigin : LeftRayOrigin).transform.rotation.eulerAngles.y + (Mathf.Atan2(m_dir.x, m_dir.y) * Mathf.Rad2Deg);
+            // current y-rotation in world space of player camera
+            float current_looking_dir = player.VR_Camera.transform.rotation.eulerAngles.y;
+            player.Tracked_Objects.transform.Rotate(Vector3.up, target_looking_dir - current_looking_dir, Space.World);
+
+            Vector3 discrepancy = player.transform.position - GameStatics.Instance.PlayerCamera.transform.position;
+            player.transform.position = n_position + Vector3.ProjectOnPlane(discrepancy, Vector3.up);
         }
     }
 }
