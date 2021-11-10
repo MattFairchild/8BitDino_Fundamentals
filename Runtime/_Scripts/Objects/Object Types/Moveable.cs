@@ -18,7 +18,7 @@ namespace EightBitDinosaur
 
         private MotionController m_second_grab;
 
-        private Coroutine m_coroutine;
+        protected Coroutine m_move_coroutine;
 
         public override void on_overlap_grip_pressed(MotionController n_hand)
         {
@@ -31,7 +31,7 @@ namespace EightBitDinosaur
                 m_first_grab = n_hand;
                 m_first_position = n_hand.transform.position;
 
-                m_coroutine = StartCoroutine(simple_routine());
+                m_move_coroutine = StartCoroutine(simple_routine());
             }
             else
             {
@@ -47,7 +47,7 @@ namespace EightBitDinosaur
             {
                 if (m_first_grab != null)
                 {
-                    StopCoroutine(m_coroutine);
+                    StopCoroutine(m_move_coroutine);
                     m_first_grab = null;
                 } 
             }
