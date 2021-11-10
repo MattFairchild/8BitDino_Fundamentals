@@ -13,6 +13,11 @@ namespace EightBitDinosaur
     {
         public Moveable_Type m_type;
 
+        [Space(10)]
+
+        public bool m_lock_translate;
+        public bool m_lock_rotation;
+
         private MotionController m_first_grab;
         private Vector3 m_first_position;
 
@@ -70,8 +75,8 @@ namespace EightBitDinosaur
 
                 m_first_position = m_first_grab.transform.position;
 
-                this.transform.Translate(0.0f, y_diff, 0.0f);
-                this.transform.Rotate(this.transform.up, angle);
+                if(!m_lock_translate) this.transform.Translate(0.0f, y_diff, 0.0f);
+                if(!m_lock_rotation) this.transform.Rotate(this.transform.up, angle);
 
                 yield return null;
             }
