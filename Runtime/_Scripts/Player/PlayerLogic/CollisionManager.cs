@@ -62,16 +62,20 @@ namespace EightBitDinosaur
 	        m_interactable_list.Add(n_interactable);        // (3)
 	
 	        m_active_interactable.on_overlap_start(m_hand); // (4)
-	    }
-	
-	    /// <summary>
-	    /// when a collision with an interactable has ended, then we have to do multiple things:
-	    /// - check if it is the active one
-	    /// - if not, we can simply remove it from our list of overlapping interactables
-	    /// - if so, call the overlap end on it, and check if we are still colliding with another one of the known interactables
-	    /// </summary>
-	    /// <param name="n_interactable"></param>
-	    public void end_collision(Interactable n_interactable)
+
+#if DINO_DEBUG
+            Debug.Log($"begin collision called with active interactable {m_active_interactable.name}, with interactable list holding {m_interactable_list.Count} items");
+#endif
+		}
+
+		/// <summary>
+		/// when a collision with an interactable has ended, then we have to do multiple things:
+		/// - check if it is the active one
+		/// - if not, we can simply remove it from our list of overlapping interactables
+		/// - if so, call the overlap end on it, and check if we are still colliding with another one of the known interactables
+		/// </summary>
+		/// <param name="n_interactable"></param>
+		public void end_collision(Interactable n_interactable)
 	    {
 	        // log if this happens, which it should not
 	        if (!m_interactable_list.Contains(n_interactable))
@@ -102,12 +106,16 @@ namespace EightBitDinosaur
 	        {
 	            m_interactable_list.Remove(n_interactable);
 	        }
-	    }
-	
-	    /// <summary>
-	    /// remove all null occurences in the list. can happen when grabbing / using objects that destroy themselves upon doing so
-	    /// </summary>
-	    private void cleanup_list()
+
+#if DINO_DEBUG
+            Debug.Log($"end collision called with for interactable {n_interactable.name}, with interactable list holding {m_interactable_list.Count} items");
+#endif
+		}
+
+		/// <summary>
+		/// remove all null occurences in the list. can happen when grabbing / using objects that destroy themselves upon doing so
+		/// </summary>
+		private void cleanup_list()
 	    {
 	        m_interactable_list.RemoveAll(item => item == null);
 	    }

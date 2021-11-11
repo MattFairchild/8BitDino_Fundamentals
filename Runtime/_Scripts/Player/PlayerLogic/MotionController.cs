@@ -167,12 +167,18 @@ namespace EightBitDinosaur
 
         private void on_interactable_collision(Collider n_interactable)
         {
+#if DINO_DEBUG
+            Debug.Log($"interactable collision with {n_interactable.name}");
+#endif
             Interactable interactable = n_interactable.GetComponent<Interactable>();
             m_collision_manager.begin_collision(interactable);
         }
 
         private void on_interactable_collision_end(Collider n_interactable)
         {
+#if DINO_DEBUG
+            Debug.Log($"interactable collision with {n_interactable.name} has ended");
+#endif
             Interactable interactable = n_interactable.GetComponent<Interactable>();
             m_collision_manager.end_collision(interactable);
         }
@@ -189,10 +195,10 @@ namespace EightBitDinosaur
             m_collider.enabled = m_hands_active;
         }
 
-        #endregion
+#endregion
 
-        #region TEMPORARY FUNCTIONS
+#region TEMPORARY FUNCTIONS
 
-        #endregion
+#endregion
     }
 }
