@@ -96,8 +96,11 @@ namespace EightBitDinosaur
 	                // the last, most recent overlap will become the new active interactable
 	                m_active_interactable = m_interactable_list[m_interactable_list.Count - 1];
 	                m_active_interactable.on_overlap_start(m_hand);
-	            }
-	            else
+#if DINO_DEBUG
+					Debug.Log($"ending collision with active interactable. List has other interactables we are still colliding with. New active interactable is {m_active_interactable.name}");
+#endif
+				}
+				else
 	            {
 	                m_active_interactable = null;
 	            }
