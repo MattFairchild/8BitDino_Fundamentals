@@ -18,8 +18,12 @@ namespace EightBitDinosaur
         public bool m_lock_translate;
         public bool m_lock_rotation;
 
-        private MotionController m_first_grab;
-        private Vector3 m_first_position;
+        [Space(10)]
+
+        public float m_rotation_speed = 1.0f;
+
+        private MotionController m_first_hand;
+        private Vector3 m_first_hand_position;
 
         private MotionController m_second_grab;
 
@@ -31,10 +35,10 @@ namespace EightBitDinosaur
 
             if (m_type == Moveable_Type.SIMPLE)
             {
-                if (m_first_grab != null) return;
+                if (m_first_hand != null) return;
 
-                m_first_grab = n_hand;
-                m_first_position = n_hand.transform.position;
+                m_first_hand = n_hand;
+                m_first_hand_position = n_hand.transform.position;
 
                 m_move_coroutine = StartCoroutine(simple_routine());
             }
@@ -50,10 +54,10 @@ namespace EightBitDinosaur
         {
             if (m_type == Moveable_Type.SIMPLE)
             {
-                if (m_first_grab != null)
+                if (m_first_hand != null)
                 {
                     StopCoroutine(m_move_coroutine);
-                    m_first_grab = null;
+                    m_first_hand = null;
                 } 
             }
             else
@@ -66,17 +70,21 @@ namespace EightBitDinosaur
 
         private IEnumerator simple_routine()
         {
+            Vector3 initial_hand_pos = m_first_hand_position;
             while (true)
             {
-                float y_diff = m_first_grab.transform.position.y - m_first_position.y;
-                float angle = Vector3.SignedAngle(m_first_position - this.transform.position,
-                    m_first_grab.transform.position - this.transform.position,
+                // position delta
+                float y_diff = m_first_hand.transform.position.y - m_first_hand_position.y;
+
+                // rotation
+                float angle = Vector3.SignedAngle(m_first_hand_position - this.transform.position,
+                    m_first_hand.transform.position - this.transform.position,
                     this.transform.up);
 
-                m_first_position = m_first_grab.transform.position;
+                m_first_hand_position = m_first_hand.transform.position;
 
                 if(!m_lock_translate) this.transform.Translate(0.0f, y_diff, 0.0f);
-                if(!m_lock_rotation) this.transform.Rotate(this.transform.up, angle);
+                if(!m_lock_rotation) this.transform.Rotate(this.transform.up, angle * m_rotation_speed);
 
                 yield return null;
             }
