@@ -18,7 +18,9 @@ namespace EightBitDinosaur
 	        this.transform.LookAt(GameStatics.Instance.PlayerCamera.transform, Vector3.up);
 	
 	        GameStatics.Instance.GameRunning = false;
-	    }
+
+            GameStatics.Instance.PlayerScript.Hands.PrimaryController.ControllerFocus.ShowLinerender = true;
+        }
 	
 	    /// <summary>
 	    /// destroys the menu, but might also have some shutdown logic before
@@ -26,14 +28,16 @@ namespace EightBitDinosaur
 	    public void close()
 	    {
 	        GameStatics.Instance.GameRunning = true;
-	
-	        Destroy(this.gameObject);
+
+            GameStatics.Instance.PlayerScript.Hands.PrimaryController.ControllerFocus.ShowLinerender = false;
+
+            Destroy(this.gameObject);
 	    }
 	
 	    public void assign_button(int n_button_number, Action n_action)
 	    {
 	        Transform button = transform.Find("Background/Button" + n_button_number);
-	        ButtonInteractable button_script = button.gameObject.GetComponent<ButtonInteractable>();
+	        DinoButtonVR button_script = button.gameObject.GetComponent<DinoButtonVR>();
 	        button_script.Button_Action += n_action;
 	    }
 	}
