@@ -47,6 +47,7 @@ namespace EightBitDinosaur
             DontDestroyOnLoadScript ddols = m_singletons_parent.GetComponent<DontDestroyOnLoadScript>() ?? m_singletons_parent.AddComponent<DontDestroyOnLoadScript>();
 
             verify_layers();
+            verify_tags();
             verify_input();
             verify_gamesettings();
             verify_audio();
@@ -66,6 +67,14 @@ namespace EightBitDinosaur
             LayerVerification.add_layer("Interactable");
             LayerVerification.add_layer("Teleport");
             LayerVerification.add_layer("Dino_Player");
+        }
+
+        /// <summary>
+        /// make sure we have the tags we need
+        /// </summary>
+        private static void verify_tags()
+        {
+            TagVerification.add_tag("Menu");
         }
 
         /// <summary>
