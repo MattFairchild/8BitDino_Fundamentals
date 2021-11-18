@@ -33,12 +33,5 @@ namespace EightBitDinosaur
 
             Destroy(this.gameObject);
 	    }
-	
-	    public void assign_button(int n_button_number, Action n_action)
-	    {
-	        Transform button = transform.Find("Background/Button" + n_button_number);
-	        DinoButtonVR button_script = button.gameObject.GetComponent<DinoButtonVR>();
-	        button_script.Button_Action += n_action;
-	    }
 	}
 }
