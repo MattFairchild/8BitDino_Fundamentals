@@ -19,8 +19,12 @@ namespace EightBitDinosaur
 	    [SerializeField]
 	    private GameObject m_cam;
 	
-	    // reference to the player's hands object
+	    // reference to the player hands object
 	    private PlayerHands m_hands;
+		public PlayerHands Hands
+		{
+			get { return m_hands; }
+		}
 
 		// VR tracked camera
 		private VRCamera m_VR_camera;
