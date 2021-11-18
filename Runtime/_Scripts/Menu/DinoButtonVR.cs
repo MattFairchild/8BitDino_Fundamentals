@@ -10,6 +10,7 @@ using UnityEngine.Events;
 namespace EightBitDinosaur
 {
 	[RequireComponent(typeof(TextMesh))]
+	[ExecuteAlways]
 	public class DinoButtonVR : VR_UI_Element
 	{
 	    public UnityEvent m_button_event;
