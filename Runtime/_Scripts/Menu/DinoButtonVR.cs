@@ -50,7 +50,7 @@ namespace EightBitDinosaur
 
 			// get the defaults by grabbing the starting values
             m_renderer = GetComponent<MeshRenderer>();
-            m_back_default_color = m_renderer.material.GetColor("_Color");
+            m_back_default_color = m_renderer.sharedMaterial.GetColor("_Color");
             m_text_default_color = m_textmesh.color;
 	        m_default_size = this.transform.localScale;
 
