@@ -47,12 +47,9 @@ namespace EightBitDinosaur
 			
 			m_VR_camera = m_cam.AddComponent<VRCamera>();
 			m_VR_camera.HandCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeadMounted;
-        }
 
-        private void Start()
-        {
-            GameStatics.Instance.PlayerCamera = m_cam;
-			GameStatics.Instance.PlayerScript = this;
+            GameStatics.PlayerCamera = m_cam;
+            GameStatics.PlayerScript = this;
         }
     }
 }

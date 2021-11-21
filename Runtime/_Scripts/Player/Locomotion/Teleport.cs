@@ -163,7 +163,7 @@ namespace EightBitDinosaur
 
         private void teleport(Vector3 n_position)
         {
-            Player player = GameStatics.Instance.PlayerScript;
+            Player player = GameStatics.PlayerScript;
 
             // y-rotation-value of hand and teleport rotation/direction combined
             float target_looking_dir = (m_teleporting_hand == EHand.RIGHT ? RightRayOrigin : LeftRayOrigin).transform.rotation.eulerAngles.y + (Mathf.Atan2(m_dir.x, m_dir.y) * Mathf.Rad2Deg);
@@ -171,7 +171,7 @@ namespace EightBitDinosaur
             float current_looking_dir = player.VR_Camera.transform.rotation.eulerAngles.y;
             player.Tracked_Objects.transform.Rotate(Vector3.up, target_looking_dir - current_looking_dir, Space.World);
 
-            Vector3 discrepancy = player.transform.position - GameStatics.Instance.PlayerCamera.transform.position;
+            Vector3 discrepancy = player.transform.position - GameStatics.PlayerCamera.transform.position;
             player.transform.position = n_position + Vector3.ProjectOnPlane(discrepancy, Vector3.up);
         }
     }

@@ -14,12 +14,12 @@ namespace EightBitDinosaur
 	    void Start()
 	    {
 	        this.gameObject.tag = "Menu";
-	        this.transform.position = GameStatics.Instance.PlayerCamera.transform.position + (GameStatics.Instance.PlayerCamera.transform.forward);
-	        this.transform.LookAt(GameStatics.Instance.PlayerCamera.transform, Vector3.up);
+	        this.transform.position = GameStatics.PlayerCamera.transform.position + (GameStatics.PlayerCamera.transform.forward);
+	        this.transform.LookAt(GameStatics.PlayerCamera.transform, Vector3.up);
 	
-	        GameStatics.Instance.GameRunning = false;
+	        GameStatics.GameRunning = false;
 
-            GameStatics.Instance.PlayerScript.Hands.PrimaryController.ControllerFocus.ShowLinerender = true;
+            GameStatics.PlayerScript.Hands.PrimaryController.ControllerFocus.ShowLinerender = true;
         }
 	
 	    /// <summary>
@@ -27,9 +27,9 @@ namespace EightBitDinosaur
 	    /// </summary>
 	    public void close()
 	    {
-	        GameStatics.Instance.GameRunning = true;
+	        GameStatics.GameRunning = true;
 
-            GameStatics.Instance.PlayerScript.Hands.PrimaryController.ControllerFocus.ShowLinerender = false;
+            GameStatics.PlayerScript.Hands.PrimaryController.ControllerFocus.ShowLinerender = false;
 
             Destroy(this.gameObject);
 	    }

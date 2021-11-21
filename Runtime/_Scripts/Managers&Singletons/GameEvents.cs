@@ -213,7 +213,7 @@ namespace EightBitDinosaur
             }
             m_instance.m_game_start?.Invoke();
 
-            GameStatics.Instance.GameRunning = true;
+            GameStatics.GameRunning = true;
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace EightBitDinosaur
             }
             m_instance.m_game_stop?.Invoke();
 
-            GameStatics.Instance.GameRunning = false;
+            GameStatics.GameRunning = false;
         }
 
         public static void execute_interactable_grip_pressed(Interactable n_interactable)

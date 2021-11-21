@@ -27,7 +27,7 @@ namespace EightBitDinosaur
         /// <summary>
         /// flag that indicates if the actual game loop is running or not (not = in construction / menu etc.)
         /// </summary>
-        public bool GameRunning
+        public static bool GameRunning
         {
             get;
             set;
@@ -36,7 +36,7 @@ namespace EightBitDinosaur
         /// <summary>
         /// the camera of the player
         /// </summary>
-        public GameObject PlayerCamera
+        public static GameObject PlayerCamera
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace EightBitDinosaur
         /// <summary>
         /// the local player script
         /// </summary>
-        public Player PlayerScript
+        public static Player PlayerScript
         {
             get;
             set;

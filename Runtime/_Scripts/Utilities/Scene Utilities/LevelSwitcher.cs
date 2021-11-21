@@ -62,7 +62,7 @@ namespace EightBitDinosaur
 	        }
 	
 	        // make sure the player does not get deleted when switching levels
-	        DontDestroyOnLoad(GameStatics.Instance.PlayerScript.gameObject);
+	        DontDestroyOnLoad(GameStatics.PlayerScript.gameObject);
 	
 	        // if we want to load transition level first, then load it and cascade the desired level after it. otherwise load the passed level directly
 	        if (n_use_transition)

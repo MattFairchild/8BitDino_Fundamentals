@@ -75,7 +75,7 @@ namespace EightBitDinosaur
             this.transform.Translate(Vector3.up * m_ascend_speed * Time.deltaTime, Space.World);
 
             // rotate the combat text to look toward the player
-            this.transform.LookAt(GameStatics.Instance.PlayerCamera.transform);
+            this.transform.LookAt(GameStatics.PlayerCamera.transform);
 
             m_duration -= Time.deltaTime;
         }
