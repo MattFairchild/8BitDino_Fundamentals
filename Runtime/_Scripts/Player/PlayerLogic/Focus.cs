@@ -131,6 +131,12 @@ namespace EightBitDinosaur
 	    // update focus via raycast in forward direction, save the hit, or null if nothiung hit
 	    private void update_focus()
 	    {
+			// the interactable in focus can be destroyed by some action, so we need to sanitize it just in case
+			if (m_focus != null && m_focus.m_focused_object == null)
+			{
+				m_focus = null;
+			}
+
 	        if (Physics.Raycast(new Ray(this.transform.position, this.transform.forward), out m_hit, m_max_distance))
 	        {
 	            // only update if it is a new, valid object we are pointing at, do not do this for same object multiple times
