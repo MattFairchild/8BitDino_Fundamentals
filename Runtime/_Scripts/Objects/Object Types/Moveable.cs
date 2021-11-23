@@ -24,10 +24,17 @@ namespace EightBitDinosaur
 
         private MotionController m_first_hand;
         private Vector3 m_first_hand_position;
-
         private MotionController m_second_grab;
 
         protected Coroutine m_move_coroutine;
+
+        /// <summary>
+        /// whether the moveable is currently being grabbed / actively being used
+        /// </summary>
+        public bool Grabbed
+        {
+            get { return m_first_hand != null; }
+        }
 
         public override void on_overlap_grip_pressed(MotionController n_hand)
         {
