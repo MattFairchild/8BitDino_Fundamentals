@@ -108,7 +108,7 @@ namespace EightBitDinosaur
 	    }
 	
 	    // Update is called once per frame
-	    void Update()
+	    void LateUpdate()
 	    {
 	        // only update every frame if we have set it to do so
 	        if (m_update_continuously)
