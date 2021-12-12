@@ -13,15 +13,37 @@ namespace EightBitDinosaur
 	[ExecuteAlways]
 	public class DinoButtonVR : VR_UI_Element
 	{
-	    public UnityEvent m_button_event;
-	
-	    public Action Button_Action
+		/// <summary>
+		/// event to be executed upon clicking on the button
+		/// </summary>
+	    public UnityEvent m_click_event;
+	    public Action Click_Action
 	    {
 	        get;
 	        set;
 	    }
-	
-	    public Color m_text_hover_color;
+
+        /// <summary>
+        /// event to be executed upon first frame in which this button is in focus, i.e. being pointed at
+        /// </summary>
+        public UnityEvent m_focus_event;
+        public Action Focus_Action
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// event to be executed upon first frame in which this button stops being in focus of the player, i.e. has stopped pointing at the button
+        /// </summary>
+        public UnityEvent m_focus_end_event;
+        public Action Focus_End_Action
+        {
+            get;
+            set;
+        }
+
+        public Color m_text_hover_color;
 	    private Color m_text_default_color;
 	
 	    public Color m_back_hover_color;
@@ -71,25 +93,31 @@ namespace EightBitDinosaur
 	        m_textmesh.color = m_text_hover_color;
 	
 	        this.transform.localScale = m_default_size * m_hover_growth;
+
+			m_focus_event?.Invoke();
+			Focus_Action?.Invoke();
 	    }
 	
 	    public override void on_focus_end(MotionController n_hand)
 	    {
 	        base.on_focus_end(n_hand);
 	
-	        Debug.Log("defocusing button");
+	        Debug.Log("de-focusing button");
 	        m_textmesh.color = m_text_default_color;
 	
 	        this.transform.localScale = m_default_size;
-	    }
+
+            m_focus_end_event?.Invoke();
+            Focus_End_Action?.Invoke();
+        }
 	
 	    public override void on_focus_trigger_pressed(MotionController n_hand)
 	    {
 	        base.on_focus_trigger_pressed(n_hand);
 	        Debug.Log("pressed button");
 	
-	        m_button_event?.Invoke();
-	        Button_Action?.Invoke();
+	        m_click_event?.Invoke();
+	        Click_Action?.Invoke();
 	    }
 	}
 }

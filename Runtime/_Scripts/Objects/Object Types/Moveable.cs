@@ -1,5 +1,8 @@
 /*  (c) 2021 matthew fairchild
+ *  
     object that can be moved, rotated, scaled, with the possibility of constraining some properties
+
+    TODO: so far only the simple move scheme added, as advanced one is not needed as of yet 
  */
 
 using System.Collections;
