@@ -1,6 +1,6 @@
 /*  (c) 2021 matthew fairchild
  *  
- *  helper class that wraps the new XR functionality
+ *  helper class that wraps the new XR functionality for easier use
  */
 
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
 ﻿/*  (c) 2019 matthew fairchild
+ *  
     Class that will provide information on what the player has "in focus", with focus being dependant on 
     the origin of this component.
     It can be on the player hand, which will mean focus = what the palyer is pointing at,

@@ -1,4 +1,5 @@
 ﻿/*  (c) 2019 matthew fairchild
+ *  
     This class bundles and manages everything that has to do with the player hands,
     e.g. controller setup, getters for things attached to hands etc.
  */
@@ -16,10 +17,12 @@ namespace EightBitDinosaur
 	    /// </summary>
 	    #region HANDS
 	
+		[Tooltip("the tracked right hand gameobject")]
 	    [SerializeField]
 	    private GameObject m_hand_right;
-	
-	    [SerializeField]
+
+		[Tooltip("the tracked left hand gameobject")]
+		[SerializeField]
 	    private GameObject m_hand_left;
 	
 	    private MotionController m_motioncontroller_right;

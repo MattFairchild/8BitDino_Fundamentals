@@ -1,5 +1,6 @@
 ﻿
 /*  (c) 2019 matthew fairchild
+ *  
     this class visualizes a 3d canvas that can show debug messages et.al.
  */
 

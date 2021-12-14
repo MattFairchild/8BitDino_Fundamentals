@@ -1,5 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+/*  (c) 2021 matthew fairchild
+ *  
+    wrapper upon the new unity XR interfaces that will take care of device tracking and set it's transform accordingly
+ */
+
 using UnityEngine;
 using UnityEngine.XR;
 

@@ -43,10 +43,12 @@ namespace EightBitDinosaur
             set;
         }
 
+		[Tooltip("color of the button text upon having it in focus")]
         public Color m_text_hover_color;
 	    private Color m_text_default_color;
-	
-	    public Color m_back_hover_color;
+
+		[Tooltip("color of the background upon having it in focus")]
+		public Color m_back_hover_color;
 	    [SerializeField]private Color m_back_default_color;
 	    private MeshRenderer m_renderer;
 	

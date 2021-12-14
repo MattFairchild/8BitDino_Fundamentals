@@ -14,15 +14,19 @@ namespace EightBitDinosaur
 
     public class Moveable : Interactable
     {
+        [Tooltip("the type of moveable.\nSIMPLE = one hand, roatte and translate limited\nADVANCED: = 2 hand interaction. limitations set manually")]
         public Moveable_Type m_type;
 
         [Space(10)]
 
+        [Tooltip("whether to lock the translation, i.e. cannot be moved.\nONLY present in advanced mode")]
         public bool m_lock_translate;
+        [Tooltip("whether to lock the rotation.\nONLY present in advanced mode")]
         public bool m_lock_rotation;
 
         [Space(10)]
 
+        [Tooltip("Rotation speed multiplier for rotating SIMPLE moveables")]
         public float m_rotation_speed = 1.0f;
 
         private MotionController m_first_hand;

@@ -9,18 +9,26 @@ namespace EightBitDinosaur
 {
 	public class Player : MonoBehaviour
 	{
+		[Tooltip("the gameobject that holds all of the tracked objects under it, i.e. camera and hands")]
 	    [SerializeField]
 	    private GameObject m_tracked_objects;
+		/// <summary>
+		/// the gameobject that holds all of the tracked objects under it, i.e. camera and hands
+		/// </summary>
 		public GameObject Tracked_Objects
 		{
 			get { return m_tracked_objects; }
 		}
-	
-	    [SerializeField]
+
+		[Tooltip("reference to the tracked camera specifically")]
+		[SerializeField]
 	    private GameObject m_cam;
 	
 	    // reference to the player hands object
 	    private PlayerHands m_hands;
+		/// <summary>
+		/// script that manages player hand logic and has different properties to retrieve hands
+		/// </summary>
 		public PlayerHands Hands
 		{
 			get { return m_hands; }
